@@ -1,0 +1,23 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hotel Arul Mess">
+  <defs>
+    <linearGradient id="bg-food_arul" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+    <radialGradient id="glow-food_arul" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fb923c" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#fb923c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg-food_arul)"/>
+  <rect width="400" height="300" fill="url(#glow-food_arul)"/>
+  <circle cx="193" cy="52" r="5" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="337" cy="27" r="8" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="74" cy="36" r="5" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="78" cy="40" r="7" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="111" cy="44" r="4" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="244" cy="65" r="6" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="263" cy="25" r="7" fill="rgba(255,255,255,0.10)"/>
+  <text x="200" y="168" font-size="108" text-anchor="middle" dominant-baseline="middle">🍛</text>
+  <text x="200" y="266" font-family="Manrope, sans-serif" font-size="21" font-weight="700" fill="rgba(255,255,255,0.92)" text-anchor="middle" letter-spacing="0.5">Hotel Arul Mess</text>
+</svg>

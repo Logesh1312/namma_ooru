@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namma Ooru | Sathyamangalam</title>
+    <meta name="description" content="Discover the beautiful places in and around Sathyamangalam, from tiger reserves to breathtaking waterfalls.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS for Interactive Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="preloading">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
+
+    <!-- Cinematic Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-mark">
+                <svg viewBox="0 0 100 100" class="preloader-ring">
+                    <circle cx="50" cy="50" r="42"></circle>
+                </svg>
+                <span class="preloader-percent" id="preloaderPercent">0%</span>
+            </div>
+            <h2>Welcome to</h2>
+            <h1>Sathyamangalam</h1>
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" id="navBrand">Namma Ooru.</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="magnetic" id="navHome">Home</a></li>
+                <li><a href="#view3d" class="magnetic" id="navView3d">3D View</a></li>
+                <li><a href="#explore" class="magnetic" id="navExplore">Explore</a></li>
+                <li><a href="#map-section" class="magnetic" id="navMap">Map</a></li>
+                <li><a href="#contact" class="magnetic" id="navContact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-sky"></div>
+        <canvas id="fireflyCanvas" class="firefly-canvas"></canvas>
+        <div class="hero-parallax" id="heroParallax">
+            <div class="ridge ridge-far"></div>
+            <div class="ridge ridge-mid"></div>
+            <div class="ridge ridge-near"></div>
+            <div class="hero-fog"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-eyebrow reveal fade-bottom" id="heroEyebrow">சத்தியமங்கலம் · Erode District</span>
+            <h1 class="reveal fade-bottom shimmer-text" id="heroTitle">Namma Ooru</h1>
+            <p class="reveal fade-bottom delay-1" id="heroLead">Step into misty ghats, tiger trails, riverside escapes, and timeless temple traditions that make Sathyamangalam unforgettable.</p>
+            <a href="#about" class="scroll-down reveal fade-bottom delay-2 magnetic" id="heroExploreBtn">Plan Your Escape</a>
+        </div>
+    </section>
+
+    <!-- Fun Facts Marquee -->
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <span>🐅 Home to the largest Tiger Reserve in Tamil Nadu</span>
+            <span>⛰️ 27 hairpin bends on the legendary Dhimbam Ghat</span>
+            <span>🌊 Bhavani River flows right through the heart of the town</span>
+            <span>🔥 Bannari Amman fire-walking festival draws lakhs of devotees</span>
+            <span>🌳 Part of the Nilgiri Biosphere Reserve corridor</span>
+            <span>🐅 Home to the largest Tiger Reserve in Tamil Nadu</span>
+            <span>⛰️ 27 hairpin bends on the legendary Dhimbam Ghat</span>
+            <span>🌊 Bhavani River flows right through the heart of the town</span>
+            <span>🔥 Bannari Amman fire-walking festival draws lakhs of devotees</span>
+            <span>🌳 Part of the Nilgiri Biosphere Reserve corridor</span>
+        </div>
+    </div>
+
+    <!-- Ghat Road Signature Divider -->
+    <section class="ghat-divider">
+        <div class="container ghat-inner">
+            <svg class="ghat-road" viewBox="0 0 1200 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path id="ghatPathBg" class="ghat-road-bg" d="M0,140 C100,20 200,20 300,140 C400,260 500,260 600,140 C700,20 800,20 900,140 C1000,260 1100,260 1200,140" />
+                <path id="ghatPath" class="ghat-road-line" d="M0,140 C100,20 200,20 300,140 C400,260 500,260 600,140 C700,20 800,20 900,140 C1000,260 1100,260 1200,140" />
+                <circle class="ghat-vehicle" r="7">
+                    <animateMotion dur="9s" repeatCount="indefinite" rotate="auto">
+                        <mpath href="#ghatPathBg"></mpath>
+                    </animateMotion>
+                </circle>
+            </svg>
+            <p class="ghat-caption reveal fade-up" id="ghatCaption">27 hairpin bends carry the Dhimbam Ghat road from the plains up into the misty Western Ghats.</p>
+        </div>
+    </section>
+
+    <!-- Comprehensive About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title reveal fade-bottom" id="aboutTitle">About the Town</h2>
+            <div class="about-grid">
+                <div class="about-card about-history reveal fade-up">
+                    <h3>📜 History & Heritage</h3>
+                    <p class="dropcap">Sathyamangalam <span class="hl hl-rust">(colloquially Sathy)</span> has deep historical roots as a prominent ancient trade route connecting the Mysore Plateau with the Tamil plains. Once a strategic stronghold for rulers like Tipu Sultan, its modern culture is deeply intertwined with the highly revered <span class="hl hl-gold">Bannari Amman Temple</span>, uniting hundreds of thousands of people during the massive annual fire-walking festival.</p>
+                </div>
+                <div class="about-card about-flora reveal fade-up delay-1">
+                    <h3>🐅 Flora & Fauna</h3>
+                    <p class="dropcap">As the largest wildlife sanctuary in Tamil Nadu and a designated <span class="hl hl-forest">Tiger Reserve</span>, Sathy forms a critical ecological corridor in the Nilgiri Biosphere Reserve. Its incredibly diverse landscape—ranging from dry deciduous to dense tropical evergreen forests—is a safe haven for <span class="hl hl-forest">Bengal tigers</span>, large herds of Asian elephants, Indian gaurs, and elusive leopards.</p>
+                </div>
+                <div class="about-card about-geo reveal fade-up delay-2">
+                    <h3>⛰️ Geography & Climate</h3>
+                    <p class="dropcap">Situated elegantly on the banks of the perennial <span class="hl hl-river">Bhavani River</span> and cradled by the rugged Eastern and Western Ghats, the town features a dramatic, undulating landscape. The legendary <span class="hl hl-river">Dhimbam Ghats</span> offer 27 breathtaking hairpin bends. The region's climate is beautifully moderated by the hills, becoming famously misty, cool, and lush green during the monsoons.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats Section -->
+    <section class="stats-section">
+        <div class="container stats-container">
+            <h2 class="section-title reveal fade-bottom" id="statsTitle">Quick Stats</h2>
+            <div class="stat-box reveal fade-up">
+                <h3 class="counter" data-target="859">0</h3>
+                <p data-i18n="forestArea">Sq Km Forest Area</p>
+            </div>
+            <div class="stat-box reveal fade-up delay-1">
+                <h3 class="counter" data-target="27">0</h3>
+                <p>Hairpin Bends</p>
+            </div>
+            <div class="stat-box reveal fade-up delay-2">
+                <h3 class="counter" data-target="1">0</h3>
+                <p>Majestic River</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cinematic Hero (replaces 3D view for speed/clarity) -->
+    <section id="view3d" class="section view3d-section cinematic-hero">
+        <div class="cinematic-media">
+            <img src="images/places/tiger_real.jpg" alt="Bengal tiger in Sathyamangalam Tiger Reserve" />
+            <div class="cinematic-overlay">
+                <h2 class="section-title" id="view3dTitle">Explore the Landscape</h2>
+                <p class="view3d-sub" id="view3dSub">A cinematic glimpse of Sathyamangalam — warm light, sweeping ridges, and tranquil waters.</p>
+                <a href="#explore" class="btn-subscribe" style="margin-top:1rem;" id="view3dBtn">Browse Places</a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Places Section -->
+    <main id="explore" class="container section">
+        <h2 class="section-title reveal fade-bottom" id="placesTitle">Places to Visit</h2>
+
+        <!-- 3D Place Wheel (innovative interactive explorer) -->
+        <div class="wheel3d-wrap reveal fade-up" id="wheel3d">
+            <div class="wheel3d-header">
+                <h3>🌀 Spin the 3D Explorer</h3>
+                <p>Drag the wheel, or tap <strong>Surprise Me</strong> to land on a random place in Sathy — in 3D.</p>
+            </div>
+            <div class="wheel3d-stage" id="wheel3dStage">
+                <div class="wheel3d-ring" id="wheel3dRing"></div>
+                <div class="wheel3d-shadow"></div>
+            </div>
+            <div class="wheel3d-controls">
+                <button id="wheel3dPrev" class="wheel3d-btn" aria-label="Rotate left">‹</button>
+                <button id="wheel3dSurprise" class="btn-subscribe">🎲 Surprise Me</button>
+                <button id="wheel3dNext" class="wheel3d-btn" aria-label="Rotate right">›</button>
+            </div>
+        </div>
+
+        <!-- Spotlight Carousel -->
+        <div class="spotlight reveal fade-up" id="spotlight">
+            <div class="spotlight-track" id="spotlightTrack">
+                <div class="spotlight-slide active" data-tint="tiger">
+                    <img src="images/places/tiger_real.jpg" alt="Tiger Reserve">
+                    <div class="spotlight-overlay">
+                        <span class="spotlight-tag">🐅 Wildlife</span>
+                        <h3>Sathyamangalam Tiger Reserve</h3>
+                        <p>Step into one of Tamil Nadu's last great wild frontiers.</p>
+                    </div>
+                </div>
+                <div class="spotlight-slide" data-tint="elephant">
+                    <img src="images/places/tiger_reserve.jpg" alt="Elephant Corridor">
+                    <div class="spotlight-overlay">
+                        <span class="spotlight-tag">🐘 Elephant Corridor</span>
+                        <h3>Sathy–Bannari Elephant Corridor</h3>
+                        <p>Watch wild herds cross one of India's busiest elephant paths.</p>
+                    </div>
+                </div>
+                <div class="spotlight-slide" data-tint="falls">
+                    <img src="images/places/falls.jpg" alt="Kodiveri Falls">
+                    <div class="spotlight-overlay">
+                        <span class="spotlight-tag">🚣 Picnic</span>
+                        <h3>Kodiveri Falls & Dam</h3>
+                        <p>Coracle rides and riverside fish fry on the Bhavani.</p>
+                    </div>
+                </div>
+                <div class="spotlight-slide" data-tint="ghat">
+                    <img src="images/places/ghat.jpg" alt="Dhimbam Ghat">
+                    <div class="spotlight-overlay">
+                        <span class="spotlight-tag">⛰️ Viewpoint</span>
+                        <h3>Dhimbam Ghat Road</h3>
+                        <p>27 hairpin bends through misty forested peaks.</p>
+                    </div>
+                </div>
+                <div class="spotlight-slide" data-tint="temple">
+                    <img src="images/places/temple.jpg" alt="Bannari Amman Temple">
+                    <div class="spotlight-overlay">
+                        <span class="spotlight-tag">🙏 Spiritual</span>
+                        <h3>Bannari Amman Temple</h3>
+                        <p>A powerful spiritual landmark at the foothills.</p>
+                    </div>
+                </div>
+                <div class="spotlight-slide" data-tint="river">
+                    <img src="images/places/tourism_riverside.svg" alt="Bhavani Riverside Park">
+                    <div class="spotlight-overlay">
+                        <span class="spotlight-tag">🌊 Riverside</span>
+                        <h3>Bhavani Riverside Park</h3>
+                        <p>Sunset walks, family picnics, and gentle river breezes in the heart of town.</p>
+                    </div>
+                </div>
+                <div class="spotlight-slide" data-tint="hills">
+                    <img src="images/places/hills.jpg" alt="Kadambur Hills">
+                    <div class="spotlight-overlay">
+                        <span class="spotlight-tag">🥾 Trekking</span>
+                        <h3>Kadambur Hills</h3>
+                        <p>Quiet, untouched trails away from the crowds.</p>
+                    </div>
+                </div>
+                <div class="spotlight-slide" data-tint="dam">
+                    <img src="images/places/dam.jpg" alt="Bhavani Sagar Dam">
+                    <div class="spotlight-overlay">
+                        <span class="spotlight-tag">🌊 Scenic</span>
+                        <h3>Bhavani Sagar Dam</h3>
+                        <p>One of the world's largest earthen dams.</p>
+                    </div>
+                </div>
+                <div class="spotlight-slide" data-tint="market">
+                    <img src="images/places/daily_market.jpg" alt="Daily Market and local shopping">
+                    <div class="spotlight-overlay">
+                        <span class="spotlight-tag">🛍️ Local Flavors</span>
+                        <h3>Daily Market & Street Bazaar</h3>
+                        <p>Discover spices, snacks, and everyday charm in the town’s lively market lanes.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="spotlight-arrow prev" id="spotlightPrev" aria-label="Previous">‹</button>
+            <button class="spotlight-arrow next" id="spotlightNext" aria-label="Next">›</button>
+            <div class="spotlight-dots" id="spotlightDots"></div>
+        </div>
+
+        <!-- Search -->
+        <div class="search-wrap reveal fade-bottom">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="placeSearch" placeholder="Search places, temples, schools, shops…" autocomplete="off">
+            <span class="search-count" id="searchCount"></span>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters reveal fade-bottom delay-1">
+            <button class="filter-btn active" data-filter="all">All Directory</button>
+            <button class="filter-btn" data-filter="favorites">Favorites</button>
+            <button class="filter-btn" data-filter="schools">Schools</button>
+            <button class="filter-btn" data-filter="colleges">Colleges</button>
+            <button class="filter-btn" data-filter="shops">Shops</button>
+            <button class="filter-btn" data-filter="food">Food & Eateries</button>
+            <button class="filter-btn" data-filter="dress">Dress & Textiles</button>
+            <button class="filter-btn" data-filter="tourism">Tourist Places</button>
+            <button class="filter-btn" data-filter="temples">Temples</button>
+        </div>
+        <div class="quick-actions">
+            <button id="clearFavs" class="filter-btn" title="Clear all saved favorites">Clear Favorites</button>
+            <button id="exportJson" class="filter-btn" title="Download favorites as JSON">Export JSON</button>
+            <button id="exportPdf" class="filter-btn" title="Open printable favorites (save as PDF)">Export PDF</button>
+            <button id="langToggle" class="filter-btn" data-lang="en" title="Toggle Tamil/English">தமிழ்</button>
+        </div>
+
+        <div id="placesGrid" class="places-grid" style="transition: opacity 0.3s ease;">
+            <!-- Content will be injected by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Map Section -->
+    <section id="map-section" class="section">
+        <div class="container">
+            <div class="map-hero reveal fade-up">
+                <div class="map-hero-copy">
+                    <span class="map-pill">🧭 Explore the route</span>
+                    <h2 class="section-title" id="mapTitle">Find Us on the Map</h2>
+                    <p>From the misty ghats to the bustling town center, discover the heart of Sathyamangalam in one vibrant view.</p>
+                </div>
+                <div class="map-highlights">
+                    <div class="map-chip">🌿 Forest trails</div>
+                    <div class="map-chip">💧 River routes</div>
+                    <div class="map-chip">🛕 Temple landmarks</div>
+                </div>
+            </div>
+            <div class="map-layout reveal zoom-in">
+                <div class="map-panel">
+                    <h3>Nearby to Explore</h3>
+                    <button class="map-panel-item" type="button" data-map-target="trail">
+                        <span>🌲</span>
+                        <div>
+                            <strong>Wildlife trails</strong>
+                            <p>Safari routes and forest edges near the reserve.</p>
+                            <em>Tap to explore</em>
+                        </div>
+                    </button>
+                    <button class="map-panel-item" type="button" data-map-target="river">
+                        <span>💧</span>
+                        <div>
+                            <strong>Riverfront calm</strong>
+                            <p>Scenic stops for sunset walks and riverside breaks.</p>
+                            <em>Tap to explore</em>
+                        </div>
+                    </button>
+                    <button class="map-panel-item" type="button" data-map-target="temple">
+                        <span>🛕</span>
+                        <div>
+                            <strong>Temple circuit</strong>
+                            <p>Faith-filled landmarks and cultural stops around town.</p>
+                            <em>Tap to explore</em>
+                        </div>
+                    </button>
+                </div>
+                <div class="map-container">
+                    <div class="map-overlay-badge">Live local guide</div>
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="feature-stack reveal fade-up">
+                <div class="feature-card wide-card">
+                    <span class="map-pill">☀️ Best Time to Visit</span>
+                    <h3>Choose the season that matches your mood</h3>
+                    <div class="season-grid">
+                        <div class="season-item">
+                            <strong>Monsoon Magic</strong>
+                            <p>Cloud-kissed hills, full rivers, and the lushest green views.</p>
+                        </div>
+                        <div class="season-item">
+                            <strong>Winter Glow</strong>
+                            <p>Cool air, clear skies, and perfect weather for exploring.</p>
+                        </div>
+                        <div class="season-item">
+                            <strong>Summer Escape</strong>
+                            <p>Bright mornings, scenic drives, and long golden evenings.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <span class="map-pill">⭐ Local Favorites</span>
+                    <ul class="mini-list">
+                        <li>🍛 Heritage food stalls</li>
+                        <li>🛍️ Handmade textiles</li>
+                        <li>📍 Hidden viewpoints</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <span class="map-pill">💬 Traveler Notes</span>
+                    <blockquote>“The mix of forests, river views, and temple energy made it feel like a complete getaway.”</blockquote>
+                    <p class="reviewer">— A weekend explorer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section immersive-section">
+        <div class="container">
+            <div class="immersive-card reveal fade-up">
+                <div class="immersive-copy">
+                    <span class="map-pill">✨ Signature Experiences</span>
+                    <h3>Turn a simple getaway into a cinematic escape</h3>
+                    <p>From dawn mist rolling over the ghats to evening temple lights and riverside calm, Sathyamangalam rewards slow travel with unforgettable moments.</p>
+                    <div class="immersive-tags">
+                        <span>Sunrise drives</span>
+                        <span>Wildlife trails</span>
+                        <span>River picnics</span>
+                    </div>
+                    <a href="#explore" class="btn-subscribe">Discover More</a>
+                </div>
+                <div class="immersive-gallery">
+                    <div class="immersive-tile tile-large">
+                        <span>🌅 Dawn on the Ghats</span>
+                    </div>
+                    <div class="immersive-tile">
+                        <span>🦌 Forest trails</span>
+                    </div>
+                    <div class="immersive-tile">
+                        <span>🛕 Temple evenings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact" class="footer-section">
+        <div class="container">
+            <div class="footer-content reveal fade-up">
+                <div class="footer-brand">
+                    <h2>Namma Ooru.</h2>
+                    <p id="footerDesc">Experience the untouched beauty of Sathyamangalam.</p>
+                </div>
+                <div class="footer-form">
+                    <h3 id="footerSubscribeTitle">Get Updates & Travel Tips</h3>
+                    <form action="#" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <input type="email" id="footerEmailInput" placeholder="Enter your email" required>
+                        <button type="submit" class="btn-subscribe" id="footerSubscribeBtn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Namma Ooru - Sathyamangalam. Crafted with passion.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="placeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="modalImg" src="" alt="Place Image">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle">Title</h2>
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <span id="modalPrice" style="background: rgba(245,158,11,0.2); color: var(--accent-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">💰 Price</span>
+                        <span id="modalTiming" style="background: rgba(14,165,233,0.2); color: var(--river-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">🕒 Timings</span>
+                    </div>
+                    <p id="modalDesc" style="margin-bottom: 1.5rem; line-height: 1.8;">Description goes here.</p>
+                    
+                    <!-- Embedded Google Map -->
+                    <div class="modal-map-container" style="margin-bottom: 1.5rem; border-radius: 12px; overflow: hidden; height: 250px; border: 1px solid var(--card-border);">
+                        <iframe id="modalMapFrame" src="" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <a id="modalDirections" href="#" target="_blank" class="btn-subscribe" style="display:inline-block; text-decoration:none;">📍 Open in Maps App</a>
+                </div>
+                <div class="modal-actions" style="padding:0 3rem 2rem 3rem;">
+                    <button id="modalShare" class="btn-subscribe btn-small" style="background:#0b1220;color:#fff;border:1px solid var(--card-border);">🔗 Share</button>
+                    <button id="modalPrint" class="btn-subscribe btn-small" style="background:#0b1220;color:#fff;border:1px solid var(--card-border);">🖨️ Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trip Planner -->
+    <button id="tripFab" class="trip-fab" aria-label="Open trip planner">
+        🧳<span class="trip-badge" id="tripBadge">0</span>
+    </button>
+    <div id="tripDrawer" class="trip-drawer">
+        <div class="trip-drawer-header">
+            <h3>My Day Plan</h3>
+            <button id="tripClose" class="trip-close" aria-label="Close">&times;</button>
+        </div>
+        <p class="trip-sub">Build your own Sathy itinerary — add places while you browse.</p>
+        <div id="tripList" class="trip-list"></div>
+        <div class="trip-drawer-footer">
+            <button id="tripShare" class="btn-subscribe" style="width:100%;">📤 Share Plan</button>
+            <button id="tripClear" class="filter-btn" style="width:100%; margin-top:0.6rem;">Clear Plan</button>
+        </div>
+    </div>
+    <div id="tripOverlay" class="trip-overlay"></div>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <svg class="back-to-top-ring" viewBox="0 0 44 44">
+            <circle class="ring-bg" cx="22" cy="22" r="19"></circle>
+            <circle class="ring-fg" id="backToTopRing" cx="22" cy="22" r="19"></circle>
+        </svg>
+        <span>↑</span>
+    </button>
+
+        <!-- Leaflet JS -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+        <!-- Custom JS -->
+        <script src="script.js"></script>
+</body>
+</html>

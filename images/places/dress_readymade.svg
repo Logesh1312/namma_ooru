@@ -1,0 +1,23 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trendz Readymade Garments">
+  <defs>
+    <linearGradient id="bg-dress_readymade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="100%" stop-color="#155e63"/>
+    </linearGradient>
+    <radialGradient id="glow-dress_readymade" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#67e8f9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg-dress_readymade)"/>
+  <rect width="400" height="300" fill="url(#glow-dress_readymade)"/>
+  <circle cx="127" cy="85" r="9" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="241" cy="42" r="3" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="111" cy="89" r="3" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="347" cy="66" r="7" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="250" cy="83" r="7" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="107" cy="26" r="7" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="121" cy="88" r="3" fill="rgba(255,255,255,0.10)"/>
+  <text x="200" y="168" font-size="108" text-anchor="middle" dominant-baseline="middle">👕</text>
+  <text x="200" y="266" font-family="Manrope, sans-serif" font-size="21" font-weight="700" fill="rgba(255,255,255,0.92)" text-anchor="middle" letter-spacing="0.5">Trendz Readymade Garments</text>
+</svg>
