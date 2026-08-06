@@ -1,0 +1,23 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sathy Polytechnic College">
+  <defs>
+    <linearGradient id="bg-college_poly" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </linearGradient>
+    <radialGradient id="glow-college_poly" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg-college_poly)"/>
+  <rect width="400" height="300" fill="url(#glow-college_poly)"/>
+  <circle cx="108" cy="58" r="5" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="265" cy="66" r="8" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="155" cy="55" r="4" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="29" cy="55" r="9" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="62" cy="88" r="3" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="201" cy="23" r="3" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="46" cy="98" r="5" fill="rgba(255,255,255,0.10)"/>
+  <text x="200" y="168" font-size="108" text-anchor="middle" dominant-baseline="middle">🎓</text>
+  <text x="200" y="266" font-family="Manrope, sans-serif" font-size="21" font-weight="700" fill="rgba(255,255,255,0.92)" text-anchor="middle" letter-spacing="0.5">Sathy Polytechnic College</text>
+</svg>
