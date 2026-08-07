@@ -1,0 +1,23 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chennampatti Handloom Village">
+  <defs>
+    <linearGradient id="bg-tourism_handloom" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="100%" stop-color="#0f5c52"/>
+    </linearGradient>
+    <radialGradient id="glow-tourism_handloom" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg-tourism_handloom)"/>
+  <rect width="400" height="300" fill="url(#glow-tourism_handloom)"/>
+  <circle cx="49" cy="36" r="7" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="102" cy="94" r="6" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="311" cy="55" r="9" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="380" cy="34" r="5" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="354" cy="84" r="9" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="236" cy="69" r="3" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="187" cy="95" r="5" fill="rgba(255,255,255,0.10)"/>
+  <text x="200" y="168" font-size="108" text-anchor="middle" dominant-baseline="middle">🧶</text>
+  <text x="200" y="266" font-family="Manrope, sans-serif" font-size="21" font-weight="700" fill="rgba(255,255,255,0.92)" text-anchor="middle" letter-spacing="0.5">Chennampatti Handloom Village</text>
+</svg>
