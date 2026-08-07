@@ -18,6 +18,8 @@ git push origin main
 
 https://Logesh1312.github.io/namma_ooru/
 
+Use this same link on any device, including phones, tablets, and computers. It is the public URL for your site.
+
 If the site does not appear after the workflow finishes:
 - Open the repository on GitHub → Settings → Pages.
 - Ensure the source is set to the `gh-pages` branch (root) and save.
